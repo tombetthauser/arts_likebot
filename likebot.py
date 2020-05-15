@@ -38,7 +38,7 @@ class LikeBot:
     ).click()
     sleep(1)
 
-  def fetch_followers(self):
+  def fetch_followers(self): # not yet working
     # click users profile link
     self.driver.find_element_by_xpath(
         "/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/a/img"
@@ -52,7 +52,14 @@ class LikeBot:
     sleep(1)
 
     # scroll to bottom of followers modal
-    self.driver.execute_script("window.scrollTo(0, Y)")
+    modal_bottom = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]/ul/div")
+    followers_ul = self.driver.find_element_by_xpath("/html/body/div[4]/div/div[2]/ul")
+    followers_ul.click()
+
+    # self.driver.execute_script("arguments[0].scrollIntoView()", modal_bottom)
+    # while (True):
+    #   self.driver.execute_script("window.scrollTo(0, 1080)")
+    #   sleep(1)
 
 testbot = LikeBot("tombetthauser", "Ch1pD00d3?")
 testbot.login()
